@@ -1,12 +1,12 @@
 const express = require("express")
-const app= express();
+const app = express();
 const portNo = 5678
-//app.use(portNo,())
 
+
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 app.get("/", (req, res) => {
-    return res.status(200).json({
-        MESSAGE: "Welcome to Vercel Site"
-    })
+    return res.render("home");
 })
 
 app.listen(portNo, () => {
