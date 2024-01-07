@@ -1,4 +1,5 @@
 const path = require('path');
+const mongoose =require("mongoose");
 const express = require("express")
 const app = express();
 const portNo = 5678
@@ -11,6 +12,11 @@ app.get("/", (req, res) => {
     return res.render("home");
 })
 
-app.listen(portNo, () => {
-    console.log("server is started on port no 5678")
+mongoose.connect("mongodb+srv://dbUser:dbUserPassword@atlascluster.w6sb48g.mongodb.net/Players").then(()=>{
+    console.log("Connected to mongoDb Atlas");
+    app.listen(portNo,()=>{
+        console.log(`Server is started on port no ${portNo}`)
+    })
+}).catch((err)=>{
+    console.log(err);
 })
